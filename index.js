@@ -325,6 +325,149 @@ addButtonEl.addEventListener("click", function() {
 
 
 
+// import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
+// import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
+
+// const appSettings = {
+//     databaseURL: "https://add-to-cart-e2fbf-default-rtdb.europe-west1.firebasedatabase.app/"
+// }
+
+// const app = initializeApp(appSettings)
+// const database = getDatabase(app)
+// const shoppingListInDB = ref(database, "shoppingList")
+
+// const inputFieldEl = document.getElementById("input-field")
+// const addButtonEl = document.getElementById("add-button")
+// const shoppingListEl = document.getElementById("shopping-list")
+
+// addButtonEl.addEventListener("click", function() {
+//     let inputValue = inputFieldEl.value
+    
+//     push(shoppingListInDB, inputValue)
+    
+//     clearInputFieldEl()
+
+//     // appendItemToShoppingListEl(inputValue) --> 
+//     // this piece of code 
+//     // that was contributing to the duplication 
+//     // bug
+// })
+
+// onValue(shoppingListInDB, function(snapshot) {
+//     let itemsArray = Object.values(snapshot.val())
+
+//     /* To fix the repetition of the items in the array,
+//     do this */
+    
+//     // shoppingListEl.innerHTML = "" 
+    
+//     // But there's a duplication with the last entry,
+//     // so that means the code is running twice.
+//     // Therefore, we need to remove a line of code and that line
+//     // is the appendItemToShoppingListEl(inputValue) --> the code above
+
+//     /* Now let's refactor the above code */
+
+//     clearShoppingListEl()
+    
+//     for (let i = 0; i < itemsArray.length; i++) {
+//         appendItemToShoppingListEl(itemsArray[i])
+//     }
+// })
+
+// function clearShoppingListEl() {
+//     shoppingListEl.innerHTML = ""
+// }
+
+// function clearInputFieldEl() {
+//     inputFieldEl.value = ""
+// }
+
+// function appendItemToShoppingListEl(itemValue) {
+//     shoppingListEl.innerHTML += `<li>${itemValue}</li>`
+// }
+
+
+
+
+
+
+
+
+// This was a CSS Challenge with Flexbox for the list items,
+// so same JS code ....
+
+
+
+
+
+
+
+
+// import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
+// import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
+
+// const appSettings = {
+//     databaseURL: "https://add-to-cart-e2fbf-default-rtdb.europe-west1.firebasedatabase.app/"
+// }
+
+// const app = initializeApp(appSettings)
+// const database = getDatabase(app)
+// const shoppingListInDB = ref(database, "shoppingList")
+
+// const inputFieldEl = document.getElementById("input-field")
+// const addButtonEl = document.getElementById("add-button")
+// const shoppingListEl = document.getElementById("shopping-list")
+
+// addButtonEl.addEventListener("click", function() {
+//     let inputValue = inputFieldEl.value
+    
+//     push(shoppingListInDB, inputValue)
+    
+//     clearInputFieldEl()
+// })
+
+// onValue(shoppingListInDB, function(snapshot) {
+//     let itemsArray = Object.entries(snapshot.val())
+    
+//     clearShoppingListEl()
+    
+//     for (let i = 0; i < itemsArray.length; i++) {
+//         let currentItem = itemsArray[i]
+
+//         appendItemToShoppingListEl(currentItem)
+//     }
+// })
+
+// function clearShoppingListEl() {
+//     shoppingListEl.innerHTML = ""
+// }
+
+// function clearInputFieldEl() {
+//     inputFieldEl.value = ""
+// }
+
+// function appendItemToShoppingListEl(itemValue) {
+//     shoppingListEl.innerHTML += `<li>${itemValue}</li>`
+// }
+
+
+
+
+
+
+
+
+
+// Challenge: Getting ID of item in Database
+
+
+
+
+
+
+
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
 import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
 
@@ -346,31 +489,22 @@ addButtonEl.addEventListener("click", function() {
     push(shoppingListInDB, inputValue)
     
     clearInputFieldEl()
-
-    // appendItemToShoppingListEl(inputValue) --> 
-    // this piece of code 
-    // that was contributing to the duplication bug
 })
 
 onValue(shoppingListInDB, function(snapshot) {
-    let itemsArray = Object.values(snapshot.val())
-
-    /* To fix the repetition of the items in the array,
-    do this */
+    let itemsArray = Object.entries(snapshot.val())
     
-    // shoppingListEl.innerHTML = "" 
-    
-    // But there's a duplication with the last entry,
-    // so that means the code is running twice.
-    // Therefore, we need to remove a line of code and that line
-    // is the appendItemToShoppingListEl(inputValue) --> the code above
-
-    /* Now let's refactor the above code */
-
     clearShoppingListEl()
     
     for (let i = 0; i < itemsArray.length; i++) {
-        appendItemToShoppingListEl(itemsArray[i])
+        let currentItem = itemsArray[i]
+        let currentItemID = currentItem[0]
+        let currentItemValue = currentItem[1]
+        // Challenge: Make two let variables:
+        // currentItemID and currentItemValue and use currentItem to set both of
+        // them equal to the correct values.
+        
+        appendItemToShoppingListEl(currentItem)
     }
 })
 
