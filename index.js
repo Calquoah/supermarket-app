@@ -468,8 +468,174 @@ addButtonEl.addEventListener("click", function() {
 
 
 
+// import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
+// import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
+
+// const appSettings = {
+//     databaseURL: "https://add-to-cart-e2fbf-default-rtdb.europe-west1.firebasedatabase.app/"
+// }
+
+// const app = initializeApp(appSettings)
+// const database = getDatabase(app)
+// const shoppingListInDB = ref(database, "shoppingList")
+
+// const inputFieldEl = document.getElementById("input-field")
+// const addButtonEl = document.getElementById("add-button")
+// const shoppingListEl = document.getElementById("shopping-list")
+
+// addButtonEl.addEventListener("click", function() {
+//     let inputValue = inputFieldEl.value
+    
+//     push(shoppingListInDB, inputValue)
+    
+//     clearInputFieldEl()
+// })
+
+// onValue(shoppingListInDB, function(snapshot) {
+//     let itemsArray = Object.entries(snapshot.val())
+    
+//     clearShoppingListEl()
+    
+//     for (let i = 0; i < itemsArray.length; i++) {
+//         let currentItem = itemsArray[i]
+      
+//         // Challenge: Make two let variables:
+//         // currentItemID and currentItemValue and use currentItem to set both of
+//         // them equal to the correct values.
+//         let currentItemID = currentItem[0]
+//         let currentItemValue = currentItem[1]
+        
+//         appendItemToShoppingListEl(currentItem)
+//     }
+// })
+
+// function clearShoppingListEl() {
+//     shoppingListEl.innerHTML = ""
+// }
+
+// function clearInputFieldEl() {
+//     inputFieldEl.value = ""
+// }
+
+// function appendItemToShoppingListEl(itemValue) {
+//     shoppingListEl.innerHTML += `<li>${itemValue}</li>`
+// }
+
+
+
+
+
+
+
+
+/* createElement Scrim */
+
+
+
+
+
+
+
+
+
+// import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
+// import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
+
+// const appSettings = {
+//     databaseURL: "https://add-to-cart-e2fbf-default-rtdb.europe-west1.firebasedatabase.app/"
+// }
+
+// const app = initializeApp(appSettings)
+// const database = getDatabase(app)
+// const shoppingListInDB = ref(database, "shoppingList")
+
+// const inputFieldEl = document.getElementById("input-field")
+// const addButtonEl = document.getElementById("add-button")
+// const shoppingListEl = document.getElementById("shopping-list")
+
+// addButtonEl.addEventListener("click", function() {
+//     let inputValue = inputFieldEl.value
+    
+//     push(shoppingListInDB, inputValue)
+    
+//     clearInputFieldEl()
+// })
+
+// onValue(shoppingListInDB, function(snapshot) {
+//     let itemsArray = Object.entries(snapshot.val())
+    
+//     clearShoppingListEl()
+    
+//     for (let i = 0; i < itemsArray.length; i++) {
+//         let currentItem = itemsArray[i]
+      
+//         // Challenge: Make two let variables:
+//         // currentItemID and currentItemValue and use currentItem to set both of
+//         // them equal to the correct values.
+//         let currentItemID = currentItem[0]
+//         let currentItemValue = currentItem[1]
+        
+//         appendItemToShoppingListEl(currentItem)
+//     }
+// })
+
+// function clearShoppingListEl() {
+//     shoppingListEl.innerHTML = ""
+// }
+
+// function clearInputFieldEl() {
+//     inputFieldEl.value = ""
+// }
+
+// function appendItemToShoppingListEl(item) {
+
+//     let itemID = item[0]
+//     let itemValue = item[1]
+//     // shoppingListEl.innerHTML += `<li>${itemValue}</li>`
+
+//     /* To use createEl, follow these steps */
+
+//     /* Step 1 */
+
+//     let newEl = document.createElement("li")
+
+//     /* Step 2: Put text between the <li></li> tags */
+
+//     // Challenge: Make it so the item name shows instead of 'Something'
+//     // newEl.textContent = "Something"
+
+//     newEl.textContent = itemValue
+
+//     /* Step 3: Put it into the parent element */
+
+//     // The parent element in this case is, "shoppingListEl" 
+
+//     shoppingListEl.append(newEl)
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Challenge: Removing an Item When Clicked */
+
+
+
+
+
+
+
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
-import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
+import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
 
 const appSettings = {
     databaseURL: "https://add-to-cart-e2fbf-default-rtdb.europe-west1.firebasedatabase.app/"
@@ -500,9 +666,6 @@ onValue(shoppingListInDB, function(snapshot) {
         let currentItem = itemsArray[i]
         let currentItemID = currentItem[0]
         let currentItemValue = currentItem[1]
-        // Challenge: Make two let variables:
-        // currentItemID and currentItemValue and use currentItem to set both of
-        // them equal to the correct values.
         
         appendItemToShoppingListEl(currentItem)
     }
@@ -516,6 +679,22 @@ function clearInputFieldEl() {
     inputFieldEl.value = ""
 }
 
-function appendItemToShoppingListEl(itemValue) {
-    shoppingListEl.innerHTML += `<li>${itemValue}</li>`
+function appendItemToShoppingListEl(item) {
+    let itemID = item[0]
+    let itemValue = item[1]
+    
+    let newEl = document.createElement("li")
+    
+    newEl.textContent = itemValue
+    
+    // Challenge: Attach an event listener to newEl and 
+    // make it so you console log the id of the item when it's pressed.
+
+    newEl.addEventListener('click', function() {
+        let exactLocationOfItemInDB = ref(database, `shoppingList/${itemID}`)
+
+        remove(exactLocationOfItemInDB)
+    })
+    
+    shoppingListEl.append(newEl)
 }
