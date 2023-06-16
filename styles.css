@@ -8,6 +8,10 @@ background-color: #FFECC7;
 */
 
 
+/* Challenge 21: Make it so the user
+cannot select anything on the app */
+
+
 
 
 
@@ -21,6 +25,7 @@ html, body {
     font-family: 'Rubik', sans-serif;
     background-color: #EEF0F4;
     color: #432000;
+    user-select: none;
     /*
     font-family: 'Rubik', sans-serif;
     background-color: #EEF0F4;
