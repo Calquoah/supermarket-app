@@ -634,6 +634,193 @@ addButtonEl.addEventListener("click", function() {
 
 
 
+// import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
+// import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
+
+// const appSettings = {
+//     databaseURL: "https://add-to-cart-e2fbf-default-rtdb.europe-west1.firebasedatabase.app/"
+// }
+
+// const app = initializeApp(appSettings)
+// const database = getDatabase(app)
+// const shoppingListInDB = ref(database, "shoppingList")
+
+// const inputFieldEl = document.getElementById("input-field")
+// const addButtonEl = document.getElementById("add-button")
+// const shoppingListEl = document.getElementById("shopping-list")
+
+// addButtonEl.addEventListener("click", function() {
+//     let inputValue = inputFieldEl.value
+    
+//     push(shoppingListInDB, inputValue)
+    
+//     clearInputFieldEl()
+// })
+
+// onValue(shoppingListInDB, function(snapshot) {
+//     let itemsArray = Object.entries(snapshot.val())
+    
+//     clearShoppingListEl()
+    
+//     for (let i = 0; i < itemsArray.length; i++) {
+//         let currentItem = itemsArray[i]
+//         let currentItemID = currentItem[0]
+//         let currentItemValue = currentItem[1]
+        
+//         appendItemToShoppingListEl(currentItem)
+//     }
+// })
+
+// function clearShoppingListEl() {
+//     shoppingListEl.innerHTML = ""
+// }
+
+// function clearInputFieldEl() {
+//     inputFieldEl.value = ""
+// }
+
+// function appendItemToShoppingListEl(item) {
+//     let itemID = item[0]
+//     let itemValue = item[1]
+    
+//     let newEl = document.createElement("li")
+    
+//     newEl.textContent = itemValue
+    
+//     // Challenge: Attach an event listener to newEl and 
+//     // make it so you console log the id of the item when it's pressed.
+
+//     newEl.addEventListener('click', function() {
+//         let exactLocationOfItemInDB = ref(database, `shoppingList/${itemID}`)
+
+//         remove(exactLocationOfItemInDB)
+//     })
+    
+//     shoppingListEl.append(newEl)
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+/* Challenge: Fetch Items from the Database if Snapshot Exists */
+
+
+
+
+
+
+
+
+
+
+// import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
+// import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
+
+// const appSettings = {
+//     databaseURL: "https://add-to-cart-e2fbf-default-rtdb.europe-west1.firebasedatabase.app/"
+// }
+
+// const app = initializeApp(appSettings)
+// const database = getDatabase(app)
+// const shoppingListInDB = ref(database, "shoppingList")
+
+// const inputFieldEl = document.getElementById("input-field")
+// const addButtonEl = document.getElementById("add-button")
+// const shoppingListEl = document.getElementById("shopping-list")
+
+// addButtonEl.addEventListener("click", function() {
+//     let inputValue = inputFieldEl.value
+    
+//     push(shoppingListInDB, inputValue)
+    
+//     clearInputFieldEl()
+// })
+
+// onValue(shoppingListInDB, function(snapshot) {
+//     // Challenge: Change the onValue code so that it uses snapshot.exists() 
+//     // to show items when there are items in the database 
+//     // and if there are not displays the text 'No items here... yet'.
+    
+//     if (snapshot.exists()) {
+//         let itemsArray = Object.entries(snapshot.val())
+
+//         clearShoppingListEl()
+        
+//         for (let i = 0; i < itemsArray.length; i++) {
+//             let currentItem = itemsArray[i]
+//             let currentItemID = currentItem[0]
+//             let currentItemValue = currentItem[1]
+            
+//             appendItemToShoppingListEl(currentItem)
+//         } } else {
+//             shoppingListEl.innerHTML = "No items here...yet"
+//         }
+//     }
+
+//     // let itemsArray = Object.entries(snapshot.val())
+
+//     // clearShoppingListEl()
+    
+//     // for (let i = 0; i < itemsArray.length; i++) {
+//     //     let currentItem = itemsArray[i]
+//     //     let currentItemID = currentItem[0]
+//     //     let currentItemValue = currentItem[1]
+        
+//     //     appendItemToShoppingListEl(currentItem)
+//     // }
+// )
+
+// function clearShoppingListEl() {
+//     shoppingListEl.innerHTML = ""
+// }
+
+// function clearInputFieldEl() {
+//     inputFieldEl.value = ""
+// }
+
+// function appendItemToShoppingListEl(item) {
+//     let itemID = item[0]
+//     let itemValue = item[1]
+    
+//     let newEl = document.createElement("li")
+    
+//     newEl.textContent = itemValue
+    
+//     newEl.addEventListener("click", function() {
+//         let exactLocationOfItemInDB = ref(database, `shoppingList/${itemID}`)
+        
+//         remove(exactLocationOfItemInDB)
+//     })
+    
+//     shoppingListEl.append(newEl)
+// }
+
+
+
+
+
+
+
+
+
+
+
+/* This was a CSS challenge, but just updated the code here */
+
+
+
+
+
+
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
 import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
 
@@ -658,16 +845,20 @@ addButtonEl.addEventListener("click", function() {
 })
 
 onValue(shoppingListInDB, function(snapshot) {
-    let itemsArray = Object.entries(snapshot.val())
+    if (snapshot.exists()) {
+        let itemsArray = Object.entries(snapshot.val())
     
-    clearShoppingListEl()
-    
-    for (let i = 0; i < itemsArray.length; i++) {
-        let currentItem = itemsArray[i]
-        let currentItemID = currentItem[0]
-        let currentItemValue = currentItem[1]
+        clearShoppingListEl()
         
-        appendItemToShoppingListEl(currentItem)
+        for (let i = 0; i < itemsArray.length; i++) {
+            let currentItem = itemsArray[i]
+            let currentItemID = currentItem[0]
+            let currentItemValue = currentItem[1]
+            
+            appendItemToShoppingListEl(currentItem)
+        }    
+    } else {
+        shoppingListEl.innerHTML = "No items here... yet"
     }
 })
 
@@ -687,12 +878,9 @@ function appendItemToShoppingListEl(item) {
     
     newEl.textContent = itemValue
     
-    // Challenge: Attach an event listener to newEl and 
-    // make it so you console log the id of the item when it's pressed.
-
-    newEl.addEventListener('click', function() {
+    newEl.addEventListener("click", function() {
         let exactLocationOfItemInDB = ref(database, `shoppingList/${itemID}`)
-
+        
         remove(exactLocationOfItemInDB)
     })
     

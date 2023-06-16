@@ -1,3 +1,17 @@
+/* Challenge 20: Add hover styles
+
+ADD TO CART BUTTON
+background-color: #432000;
+
+ITEM BUTTONS
+background-color: #FFECC7;
+*/
+
+
+
+
+
+
 /* Challenge 2: Setting up the Images, Input Field, and
 Button */
 
@@ -6,6 +20,7 @@ html, body {
     padding: 0;
     font-family: 'Rubik', sans-serif;
     background-color: #EEF0F4;
+    color: #432000;
     /*
     font-family: 'Rubik', sans-serif;
     background-color: #EEF0F4;
@@ -58,6 +73,12 @@ button {
 }
 
 
+button:hover {
+    background-color: #432000;
+    cursor: pointer;
+}
+
+
 ul {
     list-style-type: none;
     padding: 0;
@@ -76,6 +97,8 @@ ul li {
     text-align: center;
 }
 
+
 ul li:hover {
-    background-color: #AC485A;
+    background-color: #FFECC7;
+    cursor: pointer;
 }
